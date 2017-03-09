@@ -12,8 +12,8 @@ import {initialMessages} from './Data';
 export class AppComponent {
  // title = "hh"
   constructor( messagesService:MessagesService) { 
-     initialMessages.map( (message: Message) =>{ return  messagesService.addMessage(message) });
-   //  messagesService.messages.subscribe(() => ({}));
+      initialMessages.map( (message: Message) =>{ return  messagesService.addMessage(message) });
+   messagesService.messages.subscribe(() => ({}));
   }
 
 
