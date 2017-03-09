@@ -1,0 +1,8 @@
+ <div class="inbox col-sm-10">
+      <ul class="list-unstyled">
+        <app-message *ngFor = "let message of messages"  
+                      [message]="message">
+          
+        </app-message>
+       </ul>
+  </div>

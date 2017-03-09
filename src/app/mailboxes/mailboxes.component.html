@@ -1,0 +1,8 @@
+ <div class="inbox col-sm-10">
+      <ul class="list-unstyled">
+        <app-mailbox  *ngFor = "let mailbox of mailboxes | async" 
+                      [mailbox]="mailbox">
+          
+        </app-mailbox>
+      </ul>
+  </div><!-- inbox -->

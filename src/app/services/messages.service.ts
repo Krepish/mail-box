@@ -14,7 +14,7 @@ export class MessagesService {
   newMessages: Subject<Message> = new Subject<Message>();
 
   constructor() { 
-     this.newMessages.subscribe((e)=> console.log(e));
+     this.newMessages.subscribe();
 
     this.messages = this.newMessages
       .scan((messages: Message[],
@@ -22,10 +22,10 @@ export class MessagesService {
               
                return  messages.concat(newMessage);
              },
-            initialMessages)
+            [])
       .publishReplay(1)
       .refCount();
-       this.messages.subscribe();
+       this.messages.subscribe((e)=>console.log(e));
   }
   addMessage(message:Message){
    

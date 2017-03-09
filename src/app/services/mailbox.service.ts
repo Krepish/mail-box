@@ -30,11 +30,11 @@ export class MailboxService {
         let mailboxes: {[key: string]: MailBox} = {};
         // Store the message's thread in our accumulator `threads`
         messages.map((message: Message) => {
-          mailboxes[message.thread.id] = mailboxes[message.thread.id] ||
-            message.thread;
+          mailboxes[message.mailbox.id] = mailboxes[message.mailbox.id] ||
+            message.mailbox;
 
           // Cache the most recent message for each thread
-          let messagesBox: MailBox = mailboxes[message.thread.id];
+          let messagesBox: MailBox = mailboxes[message.mailbox.id];
           if (!messagesBox.lastMessage ||
               messagesBox.lastMessage.sentAt < message.sentAt) {
               messagesBox.lastMessage = message;

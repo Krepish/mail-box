@@ -10,10 +10,10 @@ let echo: User    = new User('Echo_Bot@mail.ru', 'Echo', 'Bot');
 let rev: User     = new User('Reverse_Bot@mail.ru', 'Reverse', 'Bot');
 let wait: User    = new User('Waiting_Bot@mail.ru', 'Waiting', 'Bot');
 
-let tLadycap: MailBox = new MailBox('tLadycap', ladycap.name);
-let tEcho: MailBox   = new MailBox('tEcho', echo.name);
-let tRev: MailBox     = new MailBox('tRev', rev.name);
-let tWait: MailBox   = new MailBox('tWait', wait.name);
+let tLadycap: MailBox = new MailBox('tLadycap', ladycap.name,ladycap.surname);
+let tEcho: MailBox   = new MailBox('tEcho', echo.name, echo.surname);
+let tRev: MailBox     = new MailBox('tRev', rev.name, rev.surname);
+let tWait: MailBox   = new MailBox('tWait', wait.name, wait.surname);
 
 export let initialMessages: Array<Message> = [
   new Message({

@@ -18,6 +18,7 @@ export class MailBox {
 
   constructor(id?: string,
               public name?: string,
+              public surname?:string,
               public avatarSrc?: string) {
     this.id = id || uuid();
    
@@ -30,7 +31,7 @@ export class Message {
   isRead: boolean;
   author: User;
   text: string;
-  thread: MailBox;
+  mailbox: MailBox;
 
   constructor(obj?: any) {
     this.id              = obj && obj.id              || uuid();
@@ -38,6 +39,6 @@ export class Message {
     this.sentAt          = obj && obj.sentAt          || new Date();
     this.author          = obj && obj.author          || null;
     this.text            = obj && obj.text            || null;
-    this.thread          = obj && obj.thread          || null;
+    this.mailbox         = obj && obj.thread          || null;
   }
 }

@@ -1,6 +1,6 @@
-import { MailboxService } from './../services/mailbox.service';
-import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { MailBox } from './../models';
+import { Component, OnInit,Input } from '@angular/core';
+import { Router} from '@angular/router'
 
 @Component({
   selector: 'app-mailbox',
@@ -8,10 +8,11 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./mailbox.component.css']
 })
 export class MailboxComponent implements OnInit {
-   mailboxes: Observable<any>;
+@Input() mailbox: MailBox;
 
-  constructor(private mailboxService: MailboxService) {
-    this.mailboxes = mailboxService.orderedMailboxes;
+  constructor(private router:Router) { }
+   onSelect(mailbox: MailBox ) {
+   this.router.navigate(['/', mailbox.id]);
   }
   ngOnInit() {
   }
