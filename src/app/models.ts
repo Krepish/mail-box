@@ -31,6 +31,7 @@ export class Message {
   isRead: boolean;
   author: User;
   text: string;
+  name: string;
   mailbox: MailBox;
 
   constructor(obj?: any) {
@@ -39,6 +40,7 @@ export class Message {
     this.sentAt          = obj && obj.sentAt          || new Date();
     this.author          = obj && obj.author          || null;
     this.text            = obj && obj.text            || null;
-    this.mailbox         = obj && obj.thread          || null;
+    this.name            = obj && obj.text            || null;
+    this.mailbox         = obj && obj.mailbox          || null;
   }
 }

@@ -6,12 +6,12 @@ import {RouterModule} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { MailboxesComponent } from './mailboxes/mailboxes.component'
-import { MailboxComponent } from './mailbox/mailbox.component';
+import { MailboxComponent } from './mailboxes/mailbox/mailbox.component';
 import { MessagesComponent } from './messages/messages.component';
 
 import {MessagesService} from './services/messages.service'
 import {MailboxService} from './services/mailbox.service';
-import { MessageComponent } from './message/message.component';
+import { MessageComponent } from './messages/message/message.component';
 
 
 const routes = [

@@ -20,30 +20,30 @@ export let initialMessages: Array<Message> = [
     author: me,
     sentAt: new Date(1493092800010),// moment().subtract(45, 'minutes').toDate(),
     text: 'Yet let me weep for such a feeling loss.',
-    thread: tLadycap
+    mailbox: tLadycap
   }),
   new Message({
     author: ladycap,
     sentAt: new Date(1493092800003),//moment().subtract(20, 'minutes').toDate(),
     text: 'So shall you feel the loss, but not the friend which you weep for.',
-    thread: tLadycap
+     mailbox: tLadycap
   }),
   new Message({
     author: echo,
     sentAt: new Date(1493092800007),//moment().subtract(1, 'minutes').toDate(),
     text: `I\'ll echo whatever you send me`,
-    thread: tEcho
+    mailbox: tEcho
   }),
   new Message({
     author: rev,
     sentAt:new Date(1493092800002),// moment().subtract(3, 'minutes').toDate(),
     text: `I\'ll reverse whatever you send me`,
-    thread: tRev
+     mailbox: tRev
   }),
   new Message({
     author: wait,
     sentAt: new Date(1493092800006), //moment().subtract(4, 'minutes').toDate(),
     text: `I\'ll wait however many seconds you send to me before responding. Try sending '3'`,
-    thread: tWait
+     mailbox: tWait
   }),
 ];
