@@ -16,7 +16,7 @@ export class MailboxService {
   orderedMailboxes: Observable<MailBox[]>;
 
   // `currentThread` contains the currently selected thread
-  currentMailbox: Subject<MailBox> = new BehaviorSubject<MailBox>(new MailBox());
+  
 
   // `currentThreadMessages` contains the set of messages for the currently
   // selected thread

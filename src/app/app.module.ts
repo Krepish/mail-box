@@ -8,17 +8,26 @@ import { AppComponent } from './app.component';
 import { MailboxesComponent } from './mailboxes/mailboxes.component'
 import { MailboxComponent } from './mailboxes/mailbox/mailbox.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MessageComponent } from './messages/message/message.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ContactComponent } from './contacts/contact/contact.component';
+import { NewmessageComponent } from './newmessage/newmessage.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 import {MessagesService} from './services/messages.service'
 import {MailboxService} from './services/mailbox.service';
-import { MessageComponent } from './messages/message/message.component';
-import { InboxComponent } from './inbox/inbox.component';
+import { UsersService } from './services/users.service';
+
+
 
 
 const routes = [
   { path: 'home', redirectTo: '', pathMatch: 'full'},
   { path: '', component: MailboxesComponent},
+  { path: 'newmessage', component: NewmessageComponent},
+  { path: 'contacts', component: ContactsComponent},
   { path: ':id', component: MessagesComponent}
+ 
   //{ path: 'users/:userId', component: UserComponent,canActivate: [AuthGuard]},
 //  { path: 'authorization', component: AuthComponent}
 ]
@@ -30,7 +39,10 @@ const routes = [
     MailboxComponent,
     MessagesComponent,
     MessageComponent,
-    InboxComponent
+    InboxComponent,
+    NewmessageComponent,
+    ContactsComponent,
+    ContactComponent
 
   ],
   imports: [
@@ -39,7 +51,7 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [MessagesService, MailboxService],
+  providers: [MessagesService, MailboxService,UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

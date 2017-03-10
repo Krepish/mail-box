@@ -2,11 +2,11 @@ import {uuid}  from "./uuid";
 
 export class User {
   id: string;
-
-  constructor( public email:string,
+  password:string;
+  constructor( public email?:string,
                public name?: string,
-               public surname?:string,
-               public password?:string ) {
+               public surname?:string
+                ) {
     this.id = uuid();
   }
 }
@@ -16,11 +16,8 @@ export class MailBox {
   lastMessage: Message;
  
 
-  constructor(id?: string,
-              public name?: string,
-              public surname?:string,
-              public avatarSrc?: string) {
-    this.id = id || uuid();
+  constructor(public user: User) {
+    this.id =  uuid();
    
   }
 }
