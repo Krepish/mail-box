@@ -19,10 +19,10 @@ export class MessagesComponent implements OnInit {
   constructor(private messagesService: MessagesService,
               private route: ActivatedRoute) {
 
-this.route.params.pluck('id').subscribe((e)=> {console.log(e); return  this.currentmailbox = e});
+this.route.params.pluck('id').subscribe((e)=> { return  this.currentmailbox = e});
 messagesService.messages.map((messages)=>{return messages.filter((message)=>{return message.mailbox.id === this.currentmailbox })})
 .subscribe((e)=>{ return this.messages = e});                                        
-    console.log(console.log(this.messages) );       
+  //  console.log(console.log(this.messages) );       
               }     
             
   //                

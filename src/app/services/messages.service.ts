@@ -22,15 +22,13 @@ export class MessagesService {
     
   }
   addMessage(message:Message){
-   
-    this.function.next((foo:any) => { return foo.concat(message) });
+       this.function.next((foo:any) => {return foo.concat(message) });
   }
-   
+  isRead(message:Message){
+    this.function.next(
+      (foo:any) => {return foo.map( (e) => {if (e.id === message.id) {e.isRead = true};return e})}
+    )
+  
 }
 
-
-//               function (messages) {
-// 	                return messages.map(function (message) {
-// 	                    if (message.thread.id === thread.id) {
-// 	                        message.isRead = true;
-// MessagesService.ts:29 
+}
