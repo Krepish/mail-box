@@ -10,27 +10,27 @@ import  "rxjs/add/operator/publishReplay"
 export class MessagesService {
  
   messages: Observable<Message[]>;
-
-  newMessages: Subject<Message> = new Subject<Message>();
+  function: Subject<Function> = new Subject<Function>();
 
   constructor() { 
-     this.newMessages.subscribe();
-
-    this.messages = this.newMessages
-      .scan((messages: Message[],
-             newMessage) => {
-              
-               return  messages.concat(newMessage);
-             },
-            [])
+    
+    this.function.subscribe();
+        this.messages = this.function
+      .scan((messages: Message[],operator: Function) =>{return operator(messages)},[])
       .publishReplay(1)
       .refCount();
-       this.messages.subscribe((e)=>console.log(e));
+    
   }
   addMessage(message:Message){
    
-    this.newMessages.next(message);
-
+    this.function.next((foo:any) => { return foo.concat(message) });
   }
    
 }
+
+
+//               function (messages) {
+// 	                return messages.map(function (message) {
+// 	                    if (message.thread.id === thread.id) {
+// 	                        message.isRead = true;
+// MessagesService.ts:29 

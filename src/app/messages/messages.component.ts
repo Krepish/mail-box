@@ -1,4 +1,4 @@
-import { MailBox } from '../../models';
+import { MailBox } from '../models';
 import { MailboxService } from './../services/mailbox.service';
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';

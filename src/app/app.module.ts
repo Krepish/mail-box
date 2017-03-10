@@ -12,6 +12,7 @@ import { MessagesComponent } from './messages/messages.component';
 import {MessagesService} from './services/messages.service'
 import {MailboxService} from './services/mailbox.service';
 import { MessageComponent } from './messages/message/message.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 
 const routes = [
@@ -28,7 +29,8 @@ const routes = [
     MailboxesComponent,
     MailboxComponent,
     MessagesComponent,
-    MessageComponent
+    MessageComponent,
+    InboxComponent
 
   ],
   imports: [

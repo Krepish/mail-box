@@ -1,16 +1,20 @@
+import { Message } from './../../models';
 import { Component, OnInit, Input } from '@angular/core';
-import { MailBox } from '../../models';
+
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  @Input() message: MailBox;
+  @Input() message: Message;
 
   constructor() {
    // console.log(this.message)
-   }
+  }
+  onSelect(message: Message ) {
+    this.message.isRead =true;
+  }
    ngOnInit() {
   }
   
