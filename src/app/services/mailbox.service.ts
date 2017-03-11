@@ -24,25 +24,57 @@ export class MailboxService {
   currentMailboxMessages: Observable<Message[]>;
 
   constructor(messagesService:MessagesService) {
-    
+    // messagesService.messages
+    //              .map((messages)=>{
+    //                return messages.filter((message)=>{ 
+    //                  return message.mailbox.id === this.currentmailbox 
+    //                })
+    //               })
+    //              .subscribe((e)=>{ return this.messages = e});  
     this.mailboxes = messagesService.messages
       .map( (messages: Message[]) => {
-        let mailboxes: {[key: string]: MailBox} = {};
+        let mailboxes:{}={};
+      //   {[key: string]: MailBox} = {};
         // Store the message's thread in our accumulator `threads`
         messages.map((message: Message) => {
-          mailboxes[message.mailbox.id] = mailboxes[message.mailbox.id] ||
-            message.mailbox;
-
+          
+          // if(message.sendTo.email === 'Juliet@mail.ru') {
+          //   name = message.author} else { name = message.sendTo}
+          let name =( message.sendTo.email === 'Juliet@mail.ru' ) ?
+                      message.author : message.sendTo;
+                   
+            mailboxes[name.email] = mailboxes[name.email] || new MailBox(name);
+          // } else {
+          //   mailboxes[message.author.email] = mailboxes[message.author.email] || 
+          //                                 new MailBox(message.author);
+          // }
+          
+            // debugger;
           // Cache the most recent message for each thread
-          let messagesBox: MailBox = mailboxes[message.mailbox.id];
+
+
+           messagesService.messages
+                 .map((inmessages)=>{
+                   return inmessages.filter((inmessage)=>{ 
+                     return (mailboxes[name.email].id === inmessage.sendTo.email ||
+                              mailboxes[name.email].id === inmessage.author.email);
+                   })
+                  })
+                .subscribe((e)=>{ return mailboxes[name.email].messageslist = e});    
+
+          let messagesBox: MailBox = mailboxes[name.email];
           if (!messagesBox.lastMessage ||
               messagesBox.lastMessage.sentAt < message.sentAt) {
               messagesBox.lastMessage = message;
           }
+      //    mailboxes[message.mailbox.id].messageslist = 
+          
         });
-        return mailboxes;
-      });
+            console.log(mailboxes);
 
+        return mailboxes;
+      
+      });
       this.orderedMailboxes = this.mailboxes
       .map((mailboxes: { [key: string]: MailBox}) => {
         let mailboxesarray: MailBox[] = _.values(mailboxes);

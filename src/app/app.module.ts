@@ -13,11 +13,13 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { NewmessageComponent } from './newmessage/newmessage.component';
 import { InboxComponent } from './inbox/inbox.component';
+import { SearchComponent } from './search/search.component';
+import { SearchresultComponent } from './search/searchresult/searchresult.component';
 
-import {MessagesService} from './services/messages.service'
-import {MailboxService} from './services/mailbox.service';
+import { MessagesService } from './services/messages.service'
+import { MailboxService } from './services/mailbox.service';
 import { UsersService } from './services/users.service';
-
+import { SearchService } from './services/search.service';
 
 
 
@@ -26,7 +28,9 @@ const routes = [
   { path: '', component: MailboxesComponent},
   { path: 'newmessage', component: NewmessageComponent},
   { path: 'contacts', component: ContactsComponent},
+  { path: 'search/:word', component: MailboxesComponent},
   { path: ':id', component: MessagesComponent}
+  
  
   //{ path: 'users/:userId', component: UserComponent,canActivate: [AuthGuard]},
 //  { path: 'authorization', component: AuthComponent}
@@ -42,7 +46,9 @@ const routes = [
     InboxComponent,
     NewmessageComponent,
     ContactsComponent,
-    ContactComponent
+    ContactComponent,
+    SearchComponent,
+    SearchresultComponent
 
   ],
   imports: [
@@ -51,7 +57,7 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [MessagesService, MailboxService,UsersService],
+  providers: [MessagesService, MailboxService, UsersService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

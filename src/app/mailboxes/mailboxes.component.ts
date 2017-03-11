@@ -11,7 +11,7 @@ export class MailboxesComponent implements OnInit {
       mailboxes: Observable<any>;
 
   constructor(private mailboxService: MailboxService) {
-    this.mailboxes = mailboxService.orderedMailboxes;
+   this.mailboxes = mailboxService.orderedMailboxes;
   }
  
 

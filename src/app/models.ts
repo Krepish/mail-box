@@ -14,10 +14,9 @@ export class User {
 export class MailBox {
   id: string;
   lastMessage: Message;
- 
-
+  messageslist:Message[]=[];
   constructor(public user: User) {
-    this.id =  uuid();
+    this.id =  user.email;
    
   }
 }
@@ -28,8 +27,8 @@ export class Message {
   isRead: boolean;
   author: User;
   text: string;
-  name: string;
-  mailbox: MailBox;
+  title: string;
+  sendTo: User;
 
   constructor(obj?: any) {
     this.id              = obj && obj.id              || uuid();
@@ -37,7 +36,7 @@ export class Message {
     this.sentAt          = obj && obj.sentAt          || new Date();
     this.author          = obj && obj.author          || null;
     this.text            = obj && obj.text            || null;
-    this.name            = obj && obj.text            || null;
-    this.mailbox         = obj && obj.mailbox          || null;
+    this.title           = obj && obj.title           || null;
+    this.sendTo          = obj && obj.sendTo          || null;
   }
 }

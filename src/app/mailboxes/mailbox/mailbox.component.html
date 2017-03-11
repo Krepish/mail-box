@@ -14,15 +14,17 @@
                 </ul>
 
                 <span class="people-names">
-                  {{mailbox.name}} {{mailbox.surname}}
+               {{mailbox.user.email}} 
                 </span>
               </div><!-- people -->
 
               <div class="message col-sm-7">
                 <div class="clipper">
-                  <h3>About your pizza</h3>
-                  -
-                  <p>We can't deliver your pizza on time. We will be about 50 minutes late. Is that okay? Let us know because there are a lot of hungry people in the world.</p>
+                <!--<h3>About your pizza</h3>-->
+                  {{mailbox.user.name}} {{mailbox.user.surname}}
+                 <!--<p>  {{mailbox.lastMessage}}</p>-->
+                  <!--<p>We can't deliver your pizza on time. We will be about 50 minutes late. Is that okay? Let us know because there are a lot of hungry people in the world.</p>-->
+                <p>  {{mailbox.id}}</p>
                 </div>
               </div><!-- message -->
 
