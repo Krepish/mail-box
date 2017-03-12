@@ -6,6 +6,7 @@ import {Subject} from 'rxjs/Subject';
 import {initialMessages} from '../Data';
 import  "rxjs/add/operator/scan"
 import  "rxjs/add/operator/publishReplay"
+import * as _ from "underscore"
 @Injectable()
 export class UsersService {
   users: Observable<User[]>;
@@ -14,6 +15,7 @@ export class UsersService {
   constructor() { 
     
     this.function.subscribe();
+
     this.users = this.function
       .scan((users: User[],operator: Function) =>{return operator(users)},[])
       .publishReplay(1)
@@ -22,9 +24,11 @@ export class UsersService {
   }
 
   addUser(user:User){
-       this.function.next((foo:any) => {return foo.concat(user) });
+       this.function.next((foo:any) => { return  foo.concat(user) });
   }
- 
+ deleteUser(email){
+       this.function.next((foo:any) => { return   foo.filter((e)=>{return e.email !== email}) });
+  }
 
 }
   

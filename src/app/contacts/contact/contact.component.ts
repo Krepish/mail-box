@@ -1,5 +1,5 @@
 import { User } from '../../models';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -7,8 +7,12 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-@Input() user:User;
-  constructor() { }
+@Input()  user:User;
+@Output() onCheck: EventEmitter<any> = new EventEmitter();
+ 
+  public check(e){
+    this.onCheck.emit(this.user.email);
+  };
 
   ngOnInit() {
   }

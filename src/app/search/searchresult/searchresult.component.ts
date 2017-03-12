@@ -8,15 +8,16 @@ import "rxjs/add/operator/pluck";
   styleUrls: ['./searchresult.component.css']
 })
 export class SearchresultComponent implements OnInit {
-  public word:string = "";
+  public word;
+  public searchlist;
   constructor(private route: ActivatedRoute,
               private messagesService:MessagesService) {  
-   // this.route.params.pluck('word').subscribe((e)=> messagesService.search(e) );
+   this.route.params.pluck('word').subscribe(e => this.word = e );
     
-   // console.log(this.word);
+  this.messagesService.messages.subscribe((e) => this.searchlist = e)
+   console.log(this.word);
   }
-
-//  messagesService.messages
+ 
 //       .map((messages)=>{
 //         return messages.filter((message)=>{ debugger;
 //                return message.text === this.currentword;

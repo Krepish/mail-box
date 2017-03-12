@@ -17,23 +17,27 @@ import * as _ from 'underscore';
 export class MessagesComponent implements OnInit {
   public messages;
   currentmailbox;
-  constructor(private mailboxService: MailboxService,
+  constructor(private messagesService: MessagesService,
               private route: ActivatedRoute) {
 
   this.route.params.pluck('id')
                    .subscribe((e)=> { return  this.currentmailbox = e});
-    console.log(this.currentmailbox);
-  
-  this.messages = mailboxService.mailboxes.map((mailboxes: { [key: string]: MailBox}) => {
- 
-       return  mailboxes[this.currentmailbox].messageslist;
+  console.log(this.currentmailbox);
+    
+  messagesService.messages
+  .map((messages)=>{  return messages.filter((message)=>{ 
+      return message.sendTo.email  === this.currentmailbox || message.author.email  === this.currentmailbox });
+  }).subscribe((e)=>this.messages = e)
 
+ //this.mailboxService.mailboxes.subscribe((e)=> this.messages = e[this.currentmailbox].messageslist);
+ 
   
-      });                               
-     // console.log(m);       
+                                         
               }     
             
-  //                
-  ngOnInit() {}
+               
+  ngOnInit() {
+
+  }
 
 }

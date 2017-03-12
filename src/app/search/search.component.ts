@@ -11,7 +11,9 @@ import { MessagesService } from './../services/messages.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+
   word:string = "";
+  
 //mailboxes:Observable<any>;
   constructor(private _search: SearchService,
               private _el: ElementRef,
@@ -30,7 +32,7 @@ export class SearchComponent implements OnInit {
 
      onSearch() {
         this.router.navigate(['/search', this.word]);
-        this.messagesService.search(this.word)
+        //this.messagesService.search(this.word)
   }
   
  

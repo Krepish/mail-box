@@ -70,16 +70,18 @@ export class MailboxService {
       //    mailboxes[message.mailbox.id].messageslist = 
           
         });
-            console.log(mailboxes);
-
+           // console.log(mailboxes['Lady_Capulet@mail.ru']['messageslist']);
+console.log(mailboxes);
         return mailboxes;
       
       });
+     
       this.orderedMailboxes = this.mailboxes
       .map((mailboxes: { [key: string]: MailBox}) => {
         let mailboxesarray: MailBox[] = _.values(mailboxes);
-        return _.sortBy(mailboxesarray, (mailbox: MailBox) => mailbox.lastMessage.sentAt).reverse();
+          return _.sortBy(mailboxesarray, (mailbox: MailBox) => mailbox.lastMessage.sentAt).reverse();
       });
+  
 
    }
 

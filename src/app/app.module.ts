@@ -20,6 +20,7 @@ import { MessagesService } from './services/messages.service'
 import { MailboxService } from './services/mailbox.service';
 import { UsersService } from './services/users.service';
 import { SearchService } from './services/search.service';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 
@@ -28,7 +29,7 @@ const routes = [
   { path: '', component: MailboxesComponent},
   { path: 'newmessage', component: NewmessageComponent},
   { path: 'contacts', component: ContactsComponent},
-  { path: 'search/:word', component: MailboxesComponent},
+  { path: 'search/:word', component: SearchresultComponent},
   { path: ':id', component: MessagesComponent}
   
  
@@ -48,14 +49,14 @@ const routes = [
     ContactsComponent,
     ContactComponent,
     SearchComponent,
-    SearchresultComponent
-
-  ],
+    SearchresultComponent,
+    SearchPipe
+     ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [MessagesService, MailboxService, UsersService, SearchService],
   bootstrap: [AppComponent]
