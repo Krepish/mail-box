@@ -16,8 +16,8 @@ export class AppComponent {
   constructor(private  messagesService:MessagesService,
               private  usersService:UsersService,
               private router:Router) { 
-      usersService.users.subscribe(e=>console.log(e));
-      messagesService.messages.subscribe(e=>console.log(e));
+      usersService.users.subscribe();
+      messagesService.messages.subscribe();
       initialMessages.map( (message: Message) =>{ return  messagesService.addMessage(message) });
       initialUsers.map( (user: User) =>{ return  usersService.addUser(user) });
   }

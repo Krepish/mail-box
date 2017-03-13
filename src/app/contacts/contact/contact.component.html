@@ -1,33 +1,34 @@
 <li class="email-item row unread" >
   
-              <div class="people col-sm-3">
+              <div class="col-sm-4">
                 <ul class="mail-icons list-inline">
                   <li>
                     <input type="checkbox" class="mail-select" (change) = "check($event)" >
                   </li>
-                  <li>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  </li>
-                  <li>
-                    <span class="glyphicon glyphicon-cutlery"></span>
-                  </li>
                 </ul>
 
-                <span class="people-names">
+                <span >
                    {{user.email}} 
                 </span>
-              </div><!-- people -->
+              </div>
              
-              <div class="message col-sm-7">
-                <div class="clipper">
-                 
-                  <h3>  {{user.name}} </h3>
-                   <h3>  {{user.surname}} </h3>
-                </div>
-              </div><!-- message -->
+              <div class="col-sm-3">
+                              
+                  <p>  {{user.name}} </p>
+              </div>
 
-              <div class="date col-sm-2">
-                <!--<date class="pull-right">11:27 a.m.</date>-->
-              </div><!-- date -->
-            
-            </li>
+              <div class="col-sm-3">
+                              
+                  <p>  {{user.surname}} </p>
+              </div>
+               <div class="message col-sm-1">
+                 <div class="form-group col-sm-12">
+     
+        	       	<button  class="btn btn-default" 
+                           (keydown.enter)="onSendMessage($event)" 
+                           (click)="onSendMessage($event)"> Изменить
+			            </button>
+                </div>
+          </div>
+           
+</li>

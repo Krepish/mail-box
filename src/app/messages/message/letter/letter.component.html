@@ -1,0 +1,28 @@
+<div class="inbox col-sm-10">
+    <ul class="list-unstyled">
+      <li class="email-item row unread">
+        <div class="people col-sm-2">
+            <span class="people-names">
+              {{letter.author.name}} -->
+              {{letter.sendTo.name}} 
+              <!--{{message.sendTo.name}} -->
+            </span>
+        </div><!-- people -->
+             
+              <div class="message col-sm-8">
+                
+                  <h3> {{letter.title}}</h3>
+                 
+                  <div>{{letter.text}}</div>
+               
+              </div><!-- message -->
+              
+
+              <div class="date col-sm-2">
+                {{letter.sentAt | date}}
+                <!--<date class="pull-right">11:27 a.m.</date>-->
+              </div><!-- date -->
+            
+            </li>
+</ul>
+</div>

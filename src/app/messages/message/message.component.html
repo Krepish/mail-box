@@ -1,34 +1,29 @@
-<li class="email-item row unread" (click)="onSelect(message)">
+<li class="email-item row unread" (click)="onSelect(message)" [class.isRead]=" !message.isRead">
   
-              <div class="people col-sm-3">
+              <div class="people col-sm-2">
                 <ul class="mail-icons list-inline">
                   <li>
                     <input type="checkbox" class="mail-select">
                   </li>
-                  <li>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  </li>
-                  <li>
-                    <span class="glyphicon glyphicon-cutlery"></span>
-                  </li>
+                 
                 </ul>
 
                 <span class="people-names">
-                  {{message.author.name}} 
+                  {{message.author.name}} -->
                   {{message.sendTo.name}} 
-                  {{message.id}} 
                 </span>
               </div><!-- people -->
              
-              <div class="message col-sm-7">
+              <div class="message col-sm-8">
                 <div class="clipper">
-                   {{message.isRead}}
-                  <h3> {{message.title}} </h3>
+                  <h3> {{message.title}}</h3>
+                 
                   <p>{{message.text}}</p>
                 </div>
               </div><!-- message -->
 
               <div class="date col-sm-2">
+                {{message.sentAt | date}}
                 <!--<date class="pull-right">11:27 a.m.</date>-->
               </div><!-- date -->
             

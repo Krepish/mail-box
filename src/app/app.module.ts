@@ -15,12 +15,15 @@ import { NewmessageComponent } from './newmessage/newmessage.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { SearchComponent } from './search/search.component';
 import { SearchresultComponent } from './search/searchresult/searchresult.component';
+import { LetterComponent } from './messages/message/letter/letter.component';
 
 import { MessagesService } from './services/messages.service'
 import { MailboxService } from './services/mailbox.service';
 import { UsersService } from './services/users.service';
 import { SearchService } from './services/search.service';
 import { SearchPipe } from './pipes/search.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 
 
@@ -30,7 +33,10 @@ const routes = [
   { path: 'newmessage', component: NewmessageComponent},
   { path: 'contacts', component: ContactsComponent},
   { path: 'search/:word', component: SearchresultComponent},
-  { path: ':id', component: MessagesComponent}
+  { path: ':id', component: MessagesComponent},
+  { path: 'letter/:id', component: LetterComponent},
+  { path: "**", component: PageNotFoundComponent},
+  { path: 'authorization', component: AuthComponent}
   
  
   //{ path: 'users/:userId', component: UserComponent,canActivate: [AuthGuard]},
@@ -50,7 +56,9 @@ const routes = [
     ContactComponent,
     SearchComponent,
     SearchresultComponent,
-    SearchPipe
+    SearchPipe,
+    LetterComponent,
+    PageNotFoundComponent
      ],
   imports: [
     BrowserModule,

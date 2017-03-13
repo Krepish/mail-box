@@ -1,14 +1,89 @@
+<div class="controls col-sm-10">
+          <ul class="control-list list-inline">
+            <li>
+              <button class="text-btn btn btn-control" (click)="addForm($event)">
+                <strong>Добавить</strong>
+                <span class="caret"></span>
+              </button>
+            </li>
+            <li>
+              <button class="text-btn btn btn-control" (click)="deleteUser($event)">
+                <strong>Удалить</strong>
+                <span class="caret"></span>
+              </button>
+            </li>
+          </ul>
+</div> 
+ 
  <div class="inbox col-sm-10" >
-      <ul class="list-unstyled">
-        <app-contact *ngFor = "let user of users | async"  
+     <ul class="list-unstyled">
+        <li class="email-item row unread"  *ngIf="form" >
+          <div [hidden]="message == false" class="alert alert-danger">
+             Пользователь уже существует
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group col-sm-12"  >
+        	  <label for="email">Email</label>  
+            <input lass="form-control" id="email" name="email" placeholder="example@domain.com"
+                        [(ngModel)]="currentUser.email"  #email="ngModel" 
+                        required pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}">
+            </div>
+            <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+            	Некорректный email
+            </div>
+            
+          </div>
+
+          <div class="message col-sm-3">
+                <div class="form-group col-sm-12">
+        	        <label for="name"> Name </label>
+                  <input class="form-control" id="name" name="name"   
+                         placeholder="Name" value="" [(ngModel)]="currentUser.name">
+                </div>
+          </div>
+          <div class="message col-sm-3">
+                <div class="form-group col-sm-12">
+        	        <label for="surname"> Surname </label>
+                  <input class="form-control" id="surname" name="surname"   
+                         placeholder="Surname" value="" [(ngModel)]="currentUser.surname">
+                </div>
+          </div>
+
+           <div class="message col-sm-1">
+                 <div class="form-group col-sm-12">
+                  <label for="email">  </label>
+        	       	<button  class="btn btn-default" 
+                           [disabled]="email.invalid"
+                           (click)="addUser($event)"> Добавить
+			            </button>
+                </div>
+          </div>
+            <div class="message col-sm-1">
+                 <div class="form-group col-sm-12">
+                  <label for="email">  </label>
+        	       	<button  class="btn btn-default" 
+                          (click)="cancel($event)"> Отменить
+			            </button>
+                </div>
+          </div>
+            
+        </li>  
+        <div [hidden]="messageAdd == false" class="alert alert-danger">
+             Пользователь добавлен
+        </div>
+      <app-contact *ngFor = "let user of users "  
                       [user]="user"
                       (onCheck)="createArray($event)">
                       
-        </app-contact>
-        <li class="email-item row unread" *ngIf = "form" >
+      </app-contact>
+    
+     </ul>
+  </div>
+ 
+  <!--<div class="email-item row unread" *ngIf = "form" >
                 <div class="people col-sm-3">
                
-              </div><!-- people -->
+              </div>
              
               <div class="message col-sm-7">
                 <div class="clipper">
@@ -17,28 +92,12 @@
                 	<input type="text" class="form-control" id="surname" name="surname" placeholder="Surame" value="" [(ngModel)]="currentUser.surname">
                   <input id="submit" name="submit" type="submit" value="Готово" class="btn btn-primary" (click)="addUser($event)" >            
                  </div>
-              </div><!-- message -->
+              </div>
 
               <div class="date col-sm-2">
-                <!--<date class="pull-right">11:27 a.m.</date>-->
-              </div><!-- date -->
+                
+              </div>
             
-            </li>
+            </div>-->
 
-       </ul>
-
-       <div class="form-group">
-         		<div class="col-sm-10 col-sm-offset-2">
-		        	<input id="submit" name="submit" type="submit" value="Удалить" class="btn btn-primary" (click)="deleteUser($event)">
-		       </div>
-    	</div>
-
-      <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-          <input id="submit" name="submit" type="submit" value="Добавить" class="btn btn-primary" (click)="addForm($event)">
-        </div>
-      </div>
-
-
-	<div class="form-group">
-  </div>
+       
