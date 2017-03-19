@@ -1,5 +1,5 @@
 import { MailBox } from './../../../../mail-box-1/src/app/models';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { SearchService } from "./../services/search.service";
 import { Observable } from "rxjs";
 import { Router} from '@angular/router'
@@ -10,9 +10,10 @@ import { MessagesService } from './../services/messages.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   word:string = "";
+  input:string = "";
   
 //mailboxes:Observable<any>;
   constructor(private _search: SearchService,
@@ -22,7 +23,7 @@ export class SearchComponent implements OnInit {
 
    
   Observable.fromEvent(this._el.nativeElement, 'keyup')
-           .map((e: any) => {return e.target.value}) 
+           .map((e: any) => { return e.target.value}) 
            .filter((text: string) => text.length > 0) 
            .debounceTime(500)                         
           // .do(() =)
@@ -30,13 +31,17 @@ export class SearchComponent implements OnInit {
 //   this.mailboxes = _search.mailboxes;         
   }
 
-     onSearch() {
-        this.router.navigate(['/search', this.word]);
-        //this.messagesService.search(this.word)
+  onSearch(event) {
+    this.router.navigate(['/search', event || this.word]);
+    this.input ="";
   }
-  
- 
+   
   ngOnInit() {
+
+  }
+
+  ngOnDestroy(){
+    this.input ="";
   }
 
 }

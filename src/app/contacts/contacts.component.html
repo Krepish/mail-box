@@ -17,8 +17,10 @@
  
  <div class="inbox col-sm-10" >
      <ul class="list-unstyled">
+
+<!--Добавление ящика-->
         <li class="email-item row unread"  *ngIf="form" >
-          <div [hidden]="message == false" class="alert alert-danger">
+          <div [hidden]="!message" class="alert alert-danger">
              Пользователь уже существует
           </div>
           <div class="col-sm-3">
@@ -66,14 +68,64 @@
 			            </button>
                 </div>
           </div>
+        </li>  
+<!--Добавление ящика-->
+
+<!--Изменение ящика-->
+        <li class="email-item row unread"  *ngIf="canChange" >
+           <div [hidden]="!hasChanged" class="alert alert-danger">
+             Изменены данные пользователя {{changingUser.email}}
+          </div>        
+          <div class="col-sm-3">
+            <div class="form-group col-sm-12">
+                <label for="email">Email</label>  
+                <input  id="email" name="email" [value] = "[changingUser.email]" disabled>
+            </div>
+          </div>
+
+          <div class="message col-sm-3">
+            <div class="form-group col-sm-12">
+                <label for="name"> Name </label>
+                <input class="form-control" id="name" name="name"   
+                       placeholder="Name" [value]="[changingUser.name]" #name>
+            </div>
+          </div>
+
+          <div class="message col-sm-3">
+            <div class="form-group col-sm-12">
+        	      <label for="surname"> Surname </label>
+                <input class="form-control" id="surname" name="surname"   
+                       placeholder="Surname" [value]="[changingUser.surname]" #surname>
+            </div>
+          </div>
+
+          <div class="message col-sm-1">
+            <div class="form-group col-sm-12">
+                <label for="email">  </label>
+        	      <button  class="btn btn-default" (click)="changeUser(name.value, surname.value)"> 
+                    Изменить
+			          </button>
+            </div>
+          </div>
+          <div class="message col-sm-1">
+            <div class="form-group col-sm-12">
+                <label for="email">  </label>
+        	      <button class="btn btn-default" (click)="cancel($event)"> 
+                    Отменить
+			          </button>
+            </div>
+          </div>
             
         </li>  
+<!--Изменение ящика-->
+
         <div [hidden]="messageAdd == false" class="alert alert-danger">
              Пользователь добавлен
         </div>
       <app-contact *ngFor = "let user of users "  
                       [user]="user"
-                      (onCheck)="createArray($event)">
+                      (onCheck)="createArray($event)"
+                      (onChangeUser)="changeUserData($event)">
                       
       </app-contact>
     

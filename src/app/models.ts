@@ -2,10 +2,10 @@ import {uuid}  from "./uuid";
 
 export class User {
   id: string;
-  password:string;
   constructor( public email?:string,
                public name?: string,
-               public surname?:string
+               public surname?:string,
+               public password?:string
                 ) {
     this.id = uuid();
   }

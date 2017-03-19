@@ -1,5 +1,6 @@
 <div class="input-group">
-<input type="text" class="form-control" placeholder="Search for...">
+<input type="text" class="form-control" placeholder="Search for..." 
+        (keydown.enter)="onSearch(input)" name="input" [(ngModel)] ="input">
   <span class="input-group-btn">
               <button class="btn btn-main" (click)="onSearch()">
                 <span class="glyphicon glyphicon-search"></span>

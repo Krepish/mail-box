@@ -1,0 +1,86 @@
+ <div class="container-fluid">
+    <header class="row">
+      <div class="logo col-sm-2">
+        <a routerLink="/">
+          <img src="public/img/google.png" alt="Google">
+        </a>
+      </div><!-- logo -->
+
+      <div class="search-bar col-sm-6">
+        <app-search> </app-search>
+      </div><!-- search-bar -->
+
+      <div class="profile col-sm-4">
+        <ul class="profile-icons list-inline pull-right">
+          <li>{{user}}</li>        
+          <li>
+            <img src="public/img/profile.jpg" class="img-circle">
+          </li>
+          <li  (click)="showDialog = !showDialog">
+            <span class="glyphicon glyphicon-th"></span> </li>
+            <app-modal [(visible)]="showDialog">
+              <p>Вы действительно хотите выйти?</p>
+               <button (click)="showDialog = !showDialog;logOut()" class="btn">Да</button>
+              <button (click)="showDialog = !showDialog" class="btn">Нет</button>
+             
+            </app-modal>
+          
+
+
+
+
+
+         
+        </ul>
+      </div><!-- profile -->
+    </header>
+
+    <div class="control-bar row">
+      <div class="menu col-sm-2">
+        Gmail
+        <span class="caret"></span>
+      </div><!-- menu -->
+
+        <!--<div class="controls col-sm-10">
+          <ul class="control-list list-inline">
+            <li>
+              <button class="btn btn-control">
+                <input type="checkbox" class="mail-select">
+                <span class="caret"></span>
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-control">
+                <span class="glyphicon glyphicon-repeat"></span>
+              </button>
+            </li>
+            <li>
+              <button class="text-btn btn btn-control">
+                <strong>More</strong>
+                <span class="caret"></span>
+              </button>
+            </li>
+          </ul>
+        </div> -->
+  </div>
+<div class="mail row">
+  <div class="sidebar col-sm-2">
+      <button class="compose btn btn-danger" (click)="createMessage()">
+          Compose
+      </button>
+      <ul class="inbox-sections list-unstyled">
+        <app-inbox></app-inbox>
+        <li class="active"> 
+          <a routerLink = "/contacts">Contacts</a>
+        </li>
+        <li>Sent Mail</li>
+        <li>All Mail</li>
+        <li class="pending">
+              Spam (1)
+        </li>
+      </ul>
+  </div><!-- sidebar -->
+  <router-outlet>   </router-outlet>
+</div><!-- mail -->
+     
+</div>

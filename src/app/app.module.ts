@@ -16,31 +16,35 @@ import { InboxComponent } from './inbox/inbox.component';
 import { SearchComponent } from './search/search.component';
 import { SearchresultComponent } from './search/searchresult/searchresult.component';
 import { LetterComponent } from './messages/message/letter/letter.component';
+import { AuthComponent } from './auth/auth.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserComponent } from './user/user.component';
+import { ModalComponent } from './user/modal/modal.component';
 
 import { MessagesService } from './services/messages.service'
 import { MailboxService } from './services/mailbox.service';
 import { UsersService } from './services/users.service';
 import { SearchService } from './services/search.service';
+import { AuthService } from './services/auth.service';
 import { SearchPipe } from './pipes/search.pipe';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './guards/authguard';
 
 
-
-
-const routes = [
-  { path: 'home', redirectTo: '', pathMatch: 'full'},
+const userRoutes = [
   { path: '', component: MailboxesComponent},
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'newmessage', component: NewmessageComponent},
   { path: 'contacts', component: ContactsComponent},
   { path: 'search/:word', component: SearchresultComponent},
-  { path: ':id', component: MessagesComponent},
+  { path: 'mailbox', component: MessagesComponent},
   { path: 'letter/:id', component: LetterComponent},
-  { path: "**", component: PageNotFoundComponent},
-  { path: 'authorization', component: AuthComponent}
-  
- 
-  //{ path: 'users/:userId', component: UserComponent,canActivate: [AuthGuard]},
-//  { path: 'authorization', component: AuthComponent}
+  { path: "**", redirectTo: '/'}  
+];
+
+const routes = [
+ { path: 'auth', component: AuthComponent}, 
+ {path: '', component: UserComponent, children: userRoutes,  canActivate: [AuthGuard]},
+ { path: "**", redirectTo: ''}  
 ]
 
 @NgModule({
@@ -58,7 +62,11 @@ const routes = [
     SearchresultComponent,
     SearchPipe,
     LetterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AuthComponent,
+    UserComponent,
+    ModalComponent,
+    ModalComponent
      ],
   imports: [
     BrowserModule,
@@ -66,7 +74,7 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
-  providers: [MessagesService, MailboxService, UsersService, SearchService],
+  providers: [MessagesService, MailboxService, UsersService, SearchService, AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

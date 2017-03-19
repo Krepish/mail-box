@@ -13,17 +13,10 @@ export class MailboxesComponent implements OnInit {
   mailboxes: Observable<any>;
   public word;
 
-  constructor(private mailboxService: MailboxService,
-              private _route: ActivatedRoute) {
-   this.mailboxes = mailboxService.orderedMailboxes;
-
-
-  //  this._route.params.pluck('word')
-  //                 .subscribe((e)=>{this.word=e});
-                  
+  constructor(private mailboxService: MailboxService) {
+      this.mailboxes = mailboxService.orderedMailboxes;
   }
  
-
   ngOnInit() {
   }
 

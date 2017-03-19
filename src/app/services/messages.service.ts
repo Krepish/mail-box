@@ -3,24 +3,39 @@ import { Message } from '../models';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {AuthService}from './../services/auth.service'
 import {initialMessages} from '../Data';
+import * as _ from 'underscore';
 import  "rxjs/add/operator/scan"
 import  "rxjs/add/operator/publishReplay"
 @Injectable()
 export class MessagesService {
  
   messages: Observable<Message[]>;
+  orderedMessages: Observable<Message[]>;
   function: Subject<Function> = new Subject<Function>();
+ 
+  constructor(   private authService:AuthService) { 
 
-  constructor() { 
-    
-    this.function.subscribe();
+     this.function.subscribe();
 
+ 
     this.messages = this.function
-      .scan((messages: Message[],operator: Function) =>{return operator(messages)},[])
-      .publishReplay(1)
+      .scan((messages: Message[],operator: Function) =>{return operator(messages)},initialMessages)
+     
+     .map((messages: Message[])=>messages.filter((message)=>(message.sendTo.email===this.authService.currentUser.email||message.author.email===this.authService.currentUser.email)))
+      .publishReplay(1) //кеш
       .refCount();
-    
+
+   this.orderedMessages = this.messages
+      .map((messages: Message[]) => {
+        return _.sortBy(messages, 'sentAt').reverse();
+    });
+   
+//initialMessages.map( (message) =>{ debugger;return  this.addMessage(message) }); 
+  }
+ initial(){
+       this.function.next((foo:any) => {return foo });
   }
   addMessage(message:Message){
        this.function.next((foo:any) => {return foo.concat(message) });
@@ -46,6 +61,9 @@ export class MessagesService {
     }
     return messages.filter(searchSubsr);
   }
+ngOnInit(){
+
+}
 
   // transform(letters, substr: string): any {
   //   let lowerSubstr = substr.toLowerCase();

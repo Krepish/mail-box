@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MessagesService} from  '../../../services/messages.service';
 import {ActivatedRoute} from "@angular/router";
 import { Message } from './../../../models';
+import {Subscription} from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-letter',
   templateUrl: './letter.component.html',
@@ -10,19 +12,27 @@ import { Message } from './../../../models';
 export class LetterComponent implements OnInit {
   public letter:Message;
   public currentLetter;
+  private letterSubscription: Subscription;
+  private currentLetterSubscription: Subscription;
+
   constructor(private messagesService: MessagesService,
               private route: ActivatedRoute) {
 
-    this.route.params.pluck('id')
+    this.currentLetterSubscription = this.route.params.pluck('id')
                      .subscribe((e)=> { return this.currentLetter = e  });
 
     messagesService.messages
-                      .map((messages) => { return messages.filter((message)=>{ 
+                      .map((messages) => {debugger; return messages.filter((message)=>{ 
                       return message.id  === this.currentLetter })[0]})
-                      .subscribe((e)=>this.letter = e )
-                      console.log(this.letter)
-  }
+                      .subscribe((e)=>{debugger;console.log(e); this.letter=e})
+  
+    }
   ngOnInit() {}
+  ngOnDestroy(){
+   // this.letterSubscription.unsubscribe();
+    this.currentLetterSubscription.unsubscribe();
+
+  }
 
 }
 

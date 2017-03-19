@@ -8,11 +8,12 @@ import { Router} from '@angular/router'
   styleUrls: ['./mailbox.component.css']
 })
 export class MailboxComponent implements OnInit {
-@Input() mailbox: MailBox;
+  @Input() mailbox: MailBox;
 
   constructor(private router:Router) { }
+
    onSelect(mailbox: MailBox ) {
-   this.router.navigate(['/', mailbox.id]);
+       this.router.navigate(['/mailbox'], {queryParams: {'mailbox': mailbox.id}});
   }
   ngOnInit() {
   }

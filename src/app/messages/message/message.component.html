@@ -1,11 +1,10 @@
-<li class="email-item row unread" (click)="onSelect(message)" [class.isRead]=" !message.isRead">
+<li class="email-item row unread" (click)="onSelect(message)" [class.isRead]="message.isRead === false  && this.message.author.email !== this.authService.currentUser.email">
   
               <div class="people col-sm-2">
                 <ul class="mail-icons list-inline">
                   <li>
                     <input type="checkbox" class="mail-select">
                   </li>
-                 
                 </ul>
 
                 <span class="people-names">
@@ -17,14 +16,11 @@
               <div class="message col-sm-8">
                 <div class="clipper">
                   <h3> {{message.title}}</h3>
-                 
                   <p>{{message.text}}</p>
                 </div>
               </div><!-- message -->
 
               <div class="date col-sm-2">
                 {{message.sentAt | date}}
-                <!--<date class="pull-right">11:27 a.m.</date>-->
               </div><!-- date -->
-            
-            </li>
+</li>

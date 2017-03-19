@@ -5,23 +5,17 @@ import * as _ from 'underscore';
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
-
+  
   transform(mailboxes, searchWord){
-   
-   let lowerSubstr = searchWord.toLowerCase();
-   console.log(mailboxes);
-   return   mailboxes.filter((message)=>{ 
-                               
-                                          let text = message['text'].toLowerCase(); 
-                                        
-                                       if(~text.indexOf(lowerSubstr))
-                                            {return true}
-                                        else 
-                                           {return false}
-                                    })
-     
-
-
+    let lowerSubstr = searchWord.toLowerCase();
+    return mailboxes.filter((message)=>{ 
+          let text = message['text'].toLowerCase(); 
+          if(~text.indexOf(lowerSubstr)){ 
+            return true;
+          } else {
+            return false;
+          }
+    })
   }
 }
 
