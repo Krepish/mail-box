@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { MailBox } from '../../models';
 import { Component, OnInit,Input } from '@angular/core';
 import { Router} from '@angular/router'
@@ -9,13 +10,22 @@ import { Router} from '@angular/router'
 })
 export class MailboxComponent implements OnInit {
   @Input() mailbox: MailBox;
+  @Input() invisible: boolean;
+  public isUnRead:boolean;
+  public currentUnRead:number;
+  
+  constructor(private router:Router, private authService:AuthService) {  
 
-  constructor(private router:Router) { }
+
+   }
 
    onSelect(mailbox: MailBox ) {
        this.router.navigate(['/mailbox'], {queryParams: {'mailbox': mailbox.id}});
   }
   ngOnInit() {
   }
+  ngDoCheck(){ this.isUnRead =  this.mailbox.messageslist.filter((e)=>e.sendTo.email == localStorage.getItem("currentuser")).some((e)=> { {return e.isRead === false}});
+               this.currentUnRead =  this.mailbox.messageslist.filter((e)=>e.sendTo.email == localStorage.getItem("currentuser")).filter((e)=> { {return e.isRead === false}}).length;
+              console.log(this.isUnRead);}
 
 }

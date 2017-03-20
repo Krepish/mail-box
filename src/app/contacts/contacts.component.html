@@ -6,12 +6,12 @@
                 <span class="caret"></span>
               </button>
             </li>
-            <li>
+            <!--<li>
               <button class="text-btn btn btn-control" (click)="deleteUser($event)">
                 <strong>Удалить</strong>
                 <span class="caret"></span>
               </button>
-            </li>
+            </li>-->
           </ul>
 </div> 
  
@@ -19,7 +19,7 @@
      <ul class="list-unstyled">
 
 <!--Добавление ящика-->
-        <li class="email-item row unread"  *ngIf="form" >
+        <li class="email-item row unread"  *ngIf="showForm" >
           <div [hidden]="!message" class="alert alert-danger">
              Пользователь уже существует
           </div>
@@ -74,7 +74,7 @@
 <!--Изменение ящика-->
         <li class="email-item row unread"  *ngIf="canChange" >
            <div [hidden]="!hasChanged" class="alert alert-danger">
-             Изменены данные пользователя {{changingUser.email}}
+             Вы изменили свои данные. Теперь пользователи видят вас как  {{changingUser.name}}  {{changingUser.surname}} 
           </div>        
           <div class="col-sm-3">
             <div class="form-group col-sm-12">
@@ -102,7 +102,7 @@
           <div class="message col-sm-1">
             <div class="form-group col-sm-12">
                 <label for="email">  </label>
-        	      <button  class="btn btn-default" (click)="changeUser(name.value, surname.value)"> 
+        	      <button  class="btn btn-default"   (click)="changeUser(name.value, surname.value)"> 
                     Изменить
 			          </button>
             </div>

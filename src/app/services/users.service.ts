@@ -14,14 +14,13 @@ export class UsersService {
 
   constructor() { 
     this.function.subscribe();
-debugger;
     this.users = this.function
       .scan((users: User[],operator: Function) =>{return operator(users)},[])
       
       .publishReplay(1)
       .refCount();
   }
-initial(){
+  initial(){
        this.function.next((foo:any) => {return foo });
   }
   addUser(user:User){
@@ -31,11 +30,8 @@ initial(){
   public changeUser(email, name, surname){
     
     this.function.next((foo:any) => { 
-      //debugger
-      return foo.map((e)=>{
-        //debugger
+        return foo.map((e)=>{
         if(e.email === email){
-          //debugger
           e.name = name;
           e.surname = surname;
           return e;

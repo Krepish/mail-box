@@ -1,5 +1,6 @@
 import { Message } from './../models';
 import { AuthService } from './../services/auth.service';
+import {Location} from '@angular/common';
 
 import { MailBox } from '../models';
 import {Subscription} from 'rxjs/Subscription';
@@ -22,11 +23,15 @@ export class MessagesComponent implements OnInit, OnDestroy {
   private querySubscription: Subscription;
   private messagesSubscription;
   private currentmailbox;
-
+  public invisible:boolean;
+  public deleteArray = [];
   constructor(private messagesService: MessagesService,
               private route: ActivatedRoute,
               private router:Router,
-              private authService:AuthService) {
+              private authService:AuthService,
+               private location: Location) {
+
+              
 console.log("messages component run")
   this.querySubscription = route.queryParams.subscribe(
     (queryParam: any) => { 
@@ -52,9 +57,30 @@ console.log("messages component run")
  //this.mailboxService.mailboxes.subscribe((e)=> this.messages = e[this.currentmailbox].messageslist);
  
               }
-                                         
+         public showUnread(){
+    this.invisible = true;
+  }
+  public showAll(){
+    this.invisible = false;
+  }                                 
                   
-            
+   // Используется для чекбоксов
+  createArray(message){
+    if(~(this.deleteArray.indexOf(message))){
+      this.deleteArray = _.without(this.deleteArray, message);
+      console.log(this.deleteArray);
+    } else {
+      this.deleteArray.push(message);
+      console.log(this.deleteArray);
+    }   
+  }    
+  private deleteMessage(): void {
+    this.deleteArray.map( (message) =>{ return  this.messagesService.deleteMessage(message) });
+  //this.usersService.deleteUser(this.deleteArray);
+  }
+    back(): void {
+    this.location.back();
+  }   
                
   ngOnInit() {
 

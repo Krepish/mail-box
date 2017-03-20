@@ -13,9 +13,7 @@
       <div class="profile col-sm-4">
         <ul class="profile-icons list-inline pull-right">
           <li>{{user}}</li>        
-          <li>
-            <img src="public/img/profile.jpg" class="img-circle">
-          </li>
+        
           <li  (click)="showDialog = !showDialog">
             <span class="glyphicon glyphicon-th"></span> </li>
             <app-modal [(visible)]="showDialog">
@@ -34,13 +32,18 @@
         </ul>
       </div><!-- profile -->
     </header>
-
-    <div class="control-bar row">
+ <div class="control-bar row">
       <div class="menu col-sm-2">
         Gmail
         <span class="caret"></span>
-      </div><!-- menu -->
-
+      </div>
+    </div>
+    <!--<div class="control-bar row">
+      <div class="menu col-sm-2">
+        Gmail
+        <span class="caret"></span>
+      </div>
+    </div>-->
         <!--<div class="controls col-sm-10">
           <ul class="control-list list-inline">
             <li>
@@ -62,7 +65,7 @@
             </li>
           </ul>
         </div> -->
-  </div>
+  
 <div class="mail row">
   <div class="sidebar col-sm-2">
       <button class="compose btn btn-danger" (click)="createMessage()">
@@ -75,8 +78,8 @@
         </li>
         <li>Sent Mail</li>
         <li>All Mail</li>
-        <li class="pending">
-              Spam (1)
+        <li >
+              Spam 
         </li>
       </ul>
   </div><!-- sidebar -->

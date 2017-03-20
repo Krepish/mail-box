@@ -1,12 +1,10 @@
-<li class="email-item row unread" (click)="onSelect(message)" [class.isRead]="message.isRead === false  && this.message.author.email !== this.authService.currentUser.email">
+<li class="email-item row unread"  [class.isRead]="isUnRead" [hidden]="invisible && !isUnRead" >
   
-              <div class="people col-sm-2">
-                <ul class="mail-icons list-inline">
-                  <li>
-                    <input type="checkbox" class="mail-select">
-                  </li>
-                </ul>
-
+            
+                    <input type="checkbox" class="mail-select" (change) = "check($event)">
+               
+              <div (click)="onSelect(message)">
+                 <div class="people col-sm-2">
                 <span class="people-names">
                   {{message.author.name}} -->
                   {{message.sendTo.name}} 
@@ -23,4 +21,5 @@
               <div class="date col-sm-2">
                 {{message.sentAt | date}}
               </div><!-- date -->
+    </div>
 </li>

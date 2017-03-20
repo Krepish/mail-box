@@ -1,11 +1,11 @@
 <li class="email-item row unread" >
   
               <div class="col-sm-4">
-                <ul class="mail-icons list-inline">
+                <!--<ul class="mail-icons list-inline">
                   <li>
                     <input type="checkbox" class="mail-select" (change) = "check($event)" >
                   </li>
-                </ul>
+                </ul>-->
 
                 <span >
                    {{user.email}} 
@@ -22,12 +22,13 @@
                   <p>  {{user.surname}} </p>
               </div>
                <div class="message col-sm-1">
-                 <div class="form-group col-sm-12">
+                 <div class="form-group col-sm-12" >
      
-        	       	<button class="btn btn-default" 
+        	       	<button class="btn btn-default" [disabled]="user.email !== currentUser"
                           (click)="changeUser($event)"> Изменить
 			            </button>
                 </div>
           </div>
            
 </li>
+

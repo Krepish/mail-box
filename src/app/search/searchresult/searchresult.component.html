@@ -8,20 +8,10 @@
        
              
               <div class="people col-sm-3">
-                <ul class="mail-icons list-inline">
-                  <li>
-                    <input type="checkbox" class="mail-select">
-                  </li>
-                  <li>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  </li>
-                  <li>
-                    <span class="glyphicon glyphicon-cutlery"></span>
-                  </li>
-                </ul>
+                
 
                 <span class="people-names">
-                  {{search.author.name}} 
+                  {{search.author.name}} --> 
                   {{search.sendTo.name}} 
                 
                 </span>
@@ -30,13 +20,13 @@
               <div class="message col-sm-7">
                 <div class="clipper">
                    <!--{{message.isRead}}-->
-                  <!--<h3> {{message.title}} </h3>-->
+                  <h3> {{search.title}} </h3>
                   <p> {{search.text}} </p>
                 </div>
               </div><!-- message -->
 
               <div class="date col-sm-2">
-                <!--<date class="pull-right">11:27 a.m.</date>-->
+                {{search.sentAt | date}}
               </div><!-- date -->
             
             </li>

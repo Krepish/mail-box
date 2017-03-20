@@ -24,6 +24,7 @@ export class MessagesService {
       .scan((messages: Message[],operator: Function) =>{return operator(messages)},initialMessages)
      
      .map((messages: Message[])=>messages.filter((message)=>(message.sendTo.email===this.authService.currentUser.email||message.author.email===this.authService.currentUser.email)))
+     .map((messages: Message[])=>messages.filter((message)=>(message.delete !==this.authService.currentUser.email)))
       .publishReplay(1) //кеш
       .refCount();
 
@@ -48,7 +49,11 @@ export class MessagesService {
   search(e){
      this.function.next((foo:any) => {return this.filterMessages(foo, e) });
     }
-
+     deleteMessage(message:Message){
+      this.function.next(
+      (foo:any) => {return foo.map( (e) => {if (e.id === message.id) {e.delete = this.authService.currentUser.email};return e})}
+    )
+  }
   filterMessages(messages: Message[], substr:string):Message[]{
     let lowerSubstr = substr.toLowerCase();
    
@@ -61,6 +66,8 @@ export class MessagesService {
     }
     return messages.filter(searchSubsr);
   }
+
+ 
 ngOnInit(){
 
 }

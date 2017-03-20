@@ -28,6 +28,7 @@ export class ContactsComponent implements OnInit {
 
   addForm(){
     this.showForm = true;
+    
     return false;
   }
 
@@ -54,7 +55,6 @@ export class ContactsComponent implements OnInit {
     console.log(this.currentUser.email);
     let m = _.indexOf(_.pluck(this.users, 'email'), this.currentUser.email);
     if (m != -1){
-      debugger
       this.message = true;
       setTimeout(function() {this.message = false;}.bind(this), 1500);
       return;
@@ -91,7 +91,7 @@ export class ContactsComponent implements OnInit {
     this.hasChanged = true;
     setTimeout(function() {
         this.canChange = false;
-        this.hasChanged = false;}.bind(this), 1500);
+        this.hasChanged = false;}.bind(this), 2000);
   }
 
   ngOnInit() {

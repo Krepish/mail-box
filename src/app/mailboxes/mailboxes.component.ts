@@ -11,12 +11,17 @@ import "rxjs/add/operator/pluck";
 })
 export class MailboxesComponent implements OnInit {
   mailboxes: Observable<any>;
-  public word;
+  public invisible:boolean;
 
   constructor(private mailboxService: MailboxService) {
       this.mailboxes = mailboxService.orderedMailboxes;
   }
- 
+  public showUnread(){
+    this.invisible = true;
+  }
+  public showAll(){
+    this.invisible = false;
+  }
   ngOnInit() {
   }
 

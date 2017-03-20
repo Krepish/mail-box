@@ -1,7 +1,7 @@
 import { MessagesService } from './../../services/messages.service';
 import { AuthService } from './../../services/auth.service';
 import { Message } from './../../models';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { Router} from '@angular/router'
 @Component({
   selector: 'app-message',
@@ -10,8 +10,9 @@ import { Router} from '@angular/router'
 })
 export class MessageComponent implements OnInit {
   @Input() message: Message;
- 
-
+   public isUnRead:boolean;
+   @Input() invisible: boolean;
+   @Output() onCheck: EventEmitter <any> = new EventEmitter();
   constructor(private messagesService:MessagesService,
               private authService:AuthService,
               private router:Router) {
@@ -25,9 +26,11 @@ export class MessageComponent implements OnInit {
     }
     this.router.navigate(['/letter/', message.id])
   }
-  
+   public check(e){
+    this.onCheck.emit(this.message);
+  };
   ngOnInit() {
   }
   
-
+ ngDoCheck(){this.isUnRead =  this.message.isRead === false  && this.message.author.email !== this.authService.currentUser.email}
 }

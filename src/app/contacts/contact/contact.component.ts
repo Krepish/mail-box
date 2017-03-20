@@ -10,7 +10,14 @@ export class ContactComponent implements OnInit {
 @Input()  user:User;
 @Output() onCheck: EventEmitter<any> = new EventEmitter();
 @Output() onChangeUser: EventEmitter <any> = new EventEmitter();
+public currentUser:string;
+
+constructor() {
+   this.currentUser = localStorage.getItem("currentuser");
+  }
+
  
+console
   public check(e){
     this.onCheck.emit(this.user.email);
   };

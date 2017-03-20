@@ -1,20 +1,22 @@
-<li class="email-item row unread" (click)="onSelect(mailbox)">
-  <div class="people col-sm-3">
-    <ul class="mail-icons list-inline">
-        <li>
-            <input type="checkbox" class="mail-select">
-        </li>
-    </ul>
-    <span>
+
+
+<li class="email-item row  " (click)="onSelect(mailbox)" [class.isRead]="isUnRead" [hidden]="invisible && !isUnRead">
+  <div class="people col-sm-2">
+   
+    <b>
           {{mailbox.user.name}} {{mailbox.user.surname}}
-    </span>
+          <span *ngIf ="isUnRead">({{currentUnRead}})</span>
+    </b>
   </div><!-- people -->
-  <div class="lastmessage col-sm-7">
+  <div class="lastmessage col-sm-8">
+    
     <div class="clipper">
-      <p>{{mailbox.lastMessage.text}}</p>
+      <p><b>{{mailbox.lastMessage.title}}</b>   
+      {{mailbox.lastMessage.text}}</p>
+   
     </div>
   </div><!-- lastmessage -->
   <div class="date col-sm-2">
-      {{mailbox.lastMessage.sentAt | date}}
+      <b>{{mailbox.lastMessage.sentAt | date}}</b>
   </div><!-- date -->
 </li>

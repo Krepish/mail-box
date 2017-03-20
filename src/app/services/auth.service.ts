@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private usersService: UsersService,private router:Router) { }
 
-   public login(email: string, password: string){debugger;
+   public login(email: string, password: string){
      this.usersService.users.map((users)=>{return users.filter((user)=>user.email === email && user.password === password)})
                             .subscribe((e)=>this.currentUser=e[0])
     if(this.currentUser) {
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   public isLoggedIn():boolean{
-    if(localStorage.getItem("currentuser")){debugger;
+    if(localStorage.getItem("currentuser")){
       this.usersService.users.map((users)=>{
         return users.filter((user)=>user.email === localStorage.getItem("currentuser"))})
                               .subscribe((e)=>{this.currentUser=e[0]});
@@ -33,7 +33,6 @@ export class AuthService {
   }
 
   public isLoggedOut():boolean{
-    debugger;
     localStorage.removeItem("currentuser");
     this.router.navigate(['auth']);
     return false;

@@ -3,7 +3,7 @@ import {MessagesService} from  '../../../services/messages.service';
 import {ActivatedRoute} from "@angular/router";
 import { Message } from './../../../models';
 import {Subscription} from 'rxjs/Subscription';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-letter',
   templateUrl: './letter.component.html',
@@ -16,17 +16,22 @@ export class LetterComponent implements OnInit {
   private currentLetterSubscription: Subscription;
 
   constructor(private messagesService: MessagesService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+               private location: Location) {
 
     this.currentLetterSubscription = this.route.params.pluck('id')
                      .subscribe((e)=> { return this.currentLetter = e  });
 
     messagesService.messages
-                      .map((messages) => {debugger; return messages.filter((message)=>{ 
+                      .map((messages) => {return messages.filter((message)=>{ 
                       return message.id  === this.currentLetter })[0]})
-                      .subscribe((e)=>{debugger;console.log(e); this.letter=e})
+                      .subscribe((e)=>{console.log(e); this.letter=e})
   
     }
+
+    back(): void {
+    this.location.back();
+  }
   ngOnInit() {}
   ngOnDestroy(){
    // this.letterSubscription.unsubscribe();

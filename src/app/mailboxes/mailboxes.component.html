@@ -1,7 +1,24 @@
+<div class="controls col-sm-8">
+          <ul class="control-list list-inline">
+            <li>
+              <button class="text-btn btn btn-default" (click)="showUnread()">
+                <strong>Показать непрочитанные</strong>
+                <span class="caret"></span>
+              </button>
+            </li>
+            <li>
+              <button class="text-btn btn btn-default" (click)="showAll()">
+                <strong>Отобразить все</strong>
+                <span class="caret"></span>
+              </button>
+            </li>
+          </ul>
+</div> 
+
  <div class="inbox col-sm-10">
       <ul class="list-unstyled">
         <app-mailbox  *ngFor = "let mailbox of mailboxes | async " 
-                      [mailbox]="mailbox">
+                      [mailbox]="mailbox"  [invisible]="invisible">
           
         </app-mailbox>
       </ul>

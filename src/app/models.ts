@@ -29,6 +29,7 @@ export class Message {
   text: string;
   title: string;
   sendTo: User;
+  delete:string;
 
   constructor(obj?: any) {
     this.id              = obj && obj.id              || uuid();
@@ -38,5 +39,6 @@ export class Message {
     this.text            = obj && obj.text            || null;
     this.title           = obj && obj.title           || null;
     this.sendTo          = obj && obj.sendTo          || null;
+    this.delete          = obj && obj.string          || null;
   }
 }

@@ -82,7 +82,7 @@ public select(item){
 
   private addNewUser(){
   let users;
-  this.usersService.users.subscribe( e => {users = e;debugger });
+  this.usersService.users.subscribe( e => {users = e });
   let m = _.indexOf(_.pluck( users, 'email'), this.currentMessage.sendTo.email);
     if(m<0){
       this.usersService.addUser(this.currentMessage.sendTo);

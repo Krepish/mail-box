@@ -20,8 +20,17 @@
                     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                </form>
             </div>
-            <a href="#" class="text-center new-account">Create an account </a>
-        </div>
+            
+          <div (click)="showlist=!showlist">  <a href="#" class="text-center new-account" >Список возможных пользователей</a> </div>
+
+            <div *ngIf = "showlist">
+            <ul class="list-unstyled">
+                <li  *ngFor = "let user of list  " >
+                    <b>Email:</b> {{user.email}}   <b>Password:</b> {{user.password}}    
+                </li>
+             </ul>
+             <p>Вы можете сменить пользователя нажав на кнопку <span class="glyphicon glyphicon-th"></span> </p>
+            </div>
     </div>
 </div>
 
