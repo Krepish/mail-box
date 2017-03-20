@@ -1,4 +1,3 @@
-import { MailBox } from './../../../../mail-box-1/src/app/models';
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { SearchService } from "./../services/search.service";
 import { Observable } from "rxjs";
